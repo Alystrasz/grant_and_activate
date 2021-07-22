@@ -1,0 +1,4 @@
+enum Service {
+  Bluetooth,
+  Location
+}
