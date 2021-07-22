@@ -1,5 +1,6 @@
 library grant_and_activate;
 
+import 'package:grant_and_activate/utils/Service.dart';
 import 'package:grant_and_activate/utils/activate_services.dart';
 import 'package:grant_and_activate/utils/check_permissions.dart';
 
@@ -11,6 +12,8 @@ import 'package:grant_and_activate/utils/check_permissions.dart';
 ///
 /// This is the only endpoint available of this package.
 ///
-Future<bool> checkPermissionsAndActivateServices() async {
-  return await checkPermissions() && await activateServices();
+Future<bool> checkPermissionsAndActivateServices(
+  List<Service> services
+) async {
+  return await checkPermissions(services) && await activateServices(services);
 }

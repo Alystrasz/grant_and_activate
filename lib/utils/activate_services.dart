@@ -1,4 +1,5 @@
 import 'package:bluetooth_enable/bluetooth_enable.dart';
+import 'package:grant_and_activate/utils/Service.dart';
 import 'package:grant_and_activate/utils/toast_messages.dart';
 import 'package:location/location.dart';
 
@@ -13,8 +14,13 @@ import 'package:location/location.dart';
 ///
 /// Returns true if both services have been activated, false otherwise.
 ///
-Future<bool> activateServices() async {
-  var bluetoothResult = await BluetoothEnable.enableBluetooth == "true";
+Future<bool> activateServices(
+  List<Service> services
+) async {
+
+  var bluetoothResult = services.contains(Service.Bluetooth)
+      ? await BluetoothEnable.enableBluetooth == "true"
+      : true;
 
   if (!bluetoothResult) {
     showBluetoothServiceNeedsActivationToast();
@@ -22,7 +28,10 @@ Future<bool> activateServices() async {
 
   Location location = new Location();
   var locationResult = true;
-  var locationServiceResult = await location.serviceEnabled();
+  var locationServiceResult = services.contains(Service.Location)
+      ? await location.serviceEnabled()
+      : true;
+
   if (!locationServiceResult) {
     locationResult = await location.requestService();
     if (!locationResult) {

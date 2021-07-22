@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:grant_and_activate/utils/Service.dart';
 import 'package:grant_and_activate/utils/toast_messages.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -12,27 +13,34 @@ import 'package:permission_handler/permission_handler.dart';
 /// If the user refused location permission too many times, redirects to the
 /// application settings screen.
 ///
-Future<bool> checkPermissions() async {
-  var status = await Permission.bluetooth.status;
-  if (!status.isGranted) {
-    var result = await Permission.bluetooth.request();
-    if (!result.isGranted) {
-      return false;
+Future<bool> checkPermissions(
+  List<Service> services
+) async {
+
+  if (services.contains(Service.Bluetooth)) {
+    var status = await Permission.bluetooth.status;
+    if (!status.isGranted) {
+      var result = await Permission.bluetooth.request();
+      if (!result.isGranted) {
+        return false;
+      }
     }
   }
 
-  var locationStatus = await Permission.locationWhenInUse.status;
-  if (!locationStatus.isGranted) {
-    var result = await Permission.locationWhenInUse.request();
-    if (!result.isGranted) {
-      showLocationPermissionMissingToast();
-      sleep(new Duration(seconds: 2));
+  if (services.contains(Service.Location)) {
+    var locationStatus = await Permission.locationWhenInUse.status;
+    if (!locationStatus.isGranted) {
+      var result = await Permission.locationWhenInUse.request();
+      if (!result.isGranted) {
+        showLocationPermissionMissingToast();
+        sleep(new Duration(seconds: 2));
 
-      if (!await Permission.locationWhenInUse.shouldShowRequestRationale) {
-        openAppSettings();
+        if (!await Permission.locationWhenInUse.shouldShowRequestRationale) {
+          openAppSettings();
+        }
+
+        return false;
       }
-
-      return false;
     }
   }
 
