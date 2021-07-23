@@ -15,5 +15,6 @@ import 'package:grant_and_activate/utils/check_permissions.dart';
 Future<bool> checkPermissionsAndActivateServices(
   List<Service> services
 ) async {
+  if (services.length == 0) throw ArgumentError('No input services provided.');
   return await checkPermissions(services) && await activateServices(services);
 }
