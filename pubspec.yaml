@@ -1,7 +1,6 @@
 name: grant_and_activate
 description: Manage services and associated permissions easily.
 version: 0.0.1
-author: Rémy Raes
 homepage: https://github.com/Alystrasz/grant_and_activate
 
 environment:
