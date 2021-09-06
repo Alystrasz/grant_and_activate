@@ -12,32 +12,37 @@ import 'package:permission_handler/permission_handler.dart';
 /// application settings screen.
 ///
 Future<bool> checkPermissions(
-  List<Service> services
+  Service service
 ) async {
 
-  if (services.contains(Service.Bluetooth)) {
-    var status = await Permission.bluetooth.status;
-    if (!status.isGranted) {
-      var result = await Permission.bluetooth.request();
-      if (!result.isGranted) {
-        return false;
-      }
-    }
-  }
-
-  if (services.contains(Service.Location)) {
-    var locationStatus = await Permission.locationWhenInUse.status;
-    if (!locationStatus.isGranted) {
-      var result = await Permission.locationWhenInUse.request();
-      if (!result.isGranted) {
-
-        if (!await Permission.locationWhenInUse.shouldShowRequestRationale) {
-          openAppSettings();
+  switch (service) {
+    case Service.Bluetooth:
+      var status = await Permission.bluetooth.status;
+      if (!status.isGranted) {
+        var result = await Permission.bluetooth.request();
+        if (!result.isGranted) {
+          return false;
         }
-
-        return false;
       }
-    }
+      break;
+
+    case Service.Location:
+      var locationStatus = await Permission.locationWhenInUse.status;
+      if (!locationStatus.isGranted) {
+        var result = await Permission.locationWhenInUse.request();
+        if (!result.isGranted) {
+
+          if (!await Permission.locationWhenInUse.shouldShowRequestRationale) {
+            openAppSettings();
+          }
+
+          return false;
+        }
+      }
+      break;
+
+    default:
+      throw new UnimplementedError("Cannot check permissions with this service.");
   }
 
   return true;

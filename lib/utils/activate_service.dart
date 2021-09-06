@@ -13,23 +13,24 @@ import 'package:location/location.dart';
 ///
 /// Returns true if both services have been activated, false otherwise.
 ///
-Future<bool> activateServices(
-  List<Service> services
+Future<bool> activateService(
+  Service service
 ) async {
 
-  var bluetoothResult = services.contains(Service.Bluetooth)
-      ? await BluetoothEnable.enableBluetooth == "true"
-      : true;
+  switch (service) {
 
-  Location location = new Location();
-  var locationResult = true;
-  var locationServiceResult = services.contains(Service.Location)
-      ? await location.serviceEnabled()
-      : true;
+    case Service.Bluetooth:
+      return await BluetoothEnable.enableBluetooth == "true";
 
-  if (!locationServiceResult) {
-    locationResult = await location.requestService();
+    case Service.Location:
+      Location location = new Location();
+      var locationResult = true;
+      var locationServiceResult = await location.serviceEnabled();
+      if (!locationServiceResult)
+        locationResult = await location.requestService();
+      return locationResult;
+
+    default:
+      throw new UnimplementedError("Cannot activate this service.");
   }
-
-  return bluetoothResult && locationResult;
 }

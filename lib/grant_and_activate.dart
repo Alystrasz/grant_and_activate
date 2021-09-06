@@ -3,7 +3,7 @@ library grant_and_activate;
 import 'dart:developer';
 
 import 'package:grant_and_activate/utils/classes.dart';
-import 'package:grant_and_activate/utils/activate_services.dart';
+import 'package:grant_and_activate/utils/activate_service.dart';
 import 'package:grant_and_activate/utils/check_permissions.dart';
 
 
@@ -21,11 +21,11 @@ Future<Result> checkPermissionsAndActivateServices(
 
   Map<Service, bool> results = Map();
   if (services.contains(Service.Bluetooth)) {
-    bool bluetoothResult = await checkPermissions([Service.Bluetooth]) && await activateServices([Service.Bluetooth]);
+    bool bluetoothResult = await checkPermissions(Service.Bluetooth) && await activateService(Service.Bluetooth);
     results.putIfAbsent(Service.Bluetooth, () => bluetoothResult);
   }
   if (services.contains(Service.Location)) {
-    bool locationResult = await checkPermissions([Service.Location]) && await activateServices([Service.Location]);
+    bool locationResult = await checkPermissions(Service.Location) && await activateService(Service.Location);
     results.putIfAbsent(Service.Location, () => locationResult);
   }
 
