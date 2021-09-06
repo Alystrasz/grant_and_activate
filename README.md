@@ -1,14 +1,22 @@
 # grant_and_activate
 
-A new Flutter package project.
+This package is a plugin for Flutter, to programmatically request permission for a given feature, 
+plus activation of the related service.
 
-## Getting Started
+This plugin is intended to be supported on Android and iOS, but has been tested on Android only.
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Usage
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```dart
+bool result = checkPermissionsAndActivateServices(Service.Bluetooth);
+if (result) {
+  // Bluetooth permission has been granted and service is currently active
+} else {
+  // Permission has not been granted or service is not active
+}
+```
+
+## Supported features
+
+* Bluetooth
+* geolocation
