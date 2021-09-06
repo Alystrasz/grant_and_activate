@@ -3,20 +3,19 @@ import 'package:permission_handler/permission_handler.dart';
 
 
 ///
-/// Checks both Bluetooth and locations permissions; if a permission is missing,
-/// asks user for it.
+/// Checks permissions; if a permission is missing, asks user for it.
 ///
-/// Returns false if at least one permission has been denied, true otherwise.
+/// Returns false if permission has been denied, true otherwise.
 ///
 /// If the user refused location permission too many times, redirects to the
 /// application settings screen.
 ///
 Future<bool> checkPermissions(
-  Service service
+  Feature service
 ) async {
 
   switch (service) {
-    case Service.Bluetooth:
+    case Feature.Bluetooth:
       var status = await Permission.bluetooth.status;
       if (!status.isGranted) {
         var result = await Permission.bluetooth.request();
@@ -26,7 +25,7 @@ Future<bool> checkPermissions(
       }
       break;
 
-    case Service.Location:
+    case Feature.Location:
       var locationStatus = await Permission.locationWhenInUse.status;
       if (!locationStatus.isGranted) {
         var result = await Permission.locationWhenInUse.request();

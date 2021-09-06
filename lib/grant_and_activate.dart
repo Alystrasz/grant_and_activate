@@ -1,32 +1,27 @@
 library grant_and_activate;
 
-import 'dart:developer';
-
 import 'package:grant_and_activate/utils/classes.dart';
 import 'package:grant_and_activate/utils/activate_service.dart';
 import 'package:grant_and_activate/utils/check_permissions.dart';
 
 
 ///
-/// Checks Bluetooth and geolocation permissions, and enables associated
-/// services; returns false if a permission has not been granted or a service
-/// did not start, true otherwise.
-///
+/// Checks permissions, and enables associated services.
 /// This is the only endpoint available of this package.
 ///
 Future<Result> checkPermissionsAndActivateServices(
-  List<Service> services
+  List<Feature> services
 ) async {
   if (services.length == 0) throw ArgumentError('No input services provided.');
 
-  Map<Service, bool> results = Map();
-  if (services.contains(Service.Bluetooth)) {
-    bool bluetoothResult = await checkPermissions(Service.Bluetooth) && await activateService(Service.Bluetooth);
-    results.putIfAbsent(Service.Bluetooth, () => bluetoothResult);
+  Map<Feature, bool> results = Map();
+  if (services.contains(Feature.Bluetooth)) {
+    bool bluetoothResult = await checkPermissions(Feature.Bluetooth) && await activateService(Feature.Bluetooth);
+    results.putIfAbsent(Feature.Bluetooth, () => bluetoothResult);
   }
-  if (services.contains(Service.Location)) {
-    bool locationResult = await checkPermissions(Service.Location) && await activateService(Service.Location);
-    results.putIfAbsent(Service.Location, () => locationResult);
+  if (services.contains(Feature.Location)) {
+    bool locationResult = await checkPermissions(Feature.Location) && await activateService(Feature.Location);
+    results.putIfAbsent(Feature.Location, () => locationResult);
   }
 
   return Result(results, allOk: !results.values.contains(false));
