@@ -1,4 +1,4 @@
-import 'package:grant_and_activate/utils/service.dart';
+import 'package:grant_and_activate/utils/classes.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 

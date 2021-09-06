@@ -1,5 +1,5 @@
 import 'package:bluetooth_enable/bluetooth_enable.dart';
-import 'package:grant_and_activate/utils/service.dart';
+import 'package:grant_and_activate/utils/classes.dart';
 import 'package:location/location.dart';
 
 
