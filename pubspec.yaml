@@ -12,7 +12,6 @@ dependencies:
   bluetooth_enable: ^0.1.1
   flutter:
     sdk: flutter
-  fluttertoast: ^8.0.7
   location: ^4.3.0
   permission_handler: ^8.1.4
 
