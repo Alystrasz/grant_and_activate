@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'package:grant_and_activate/utils/service.dart';
-import 'package:grant_and_activate/utils/toast_messages.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 
@@ -32,8 +30,6 @@ Future<bool> checkPermissions(
     if (!locationStatus.isGranted) {
       var result = await Permission.locationWhenInUse.request();
       if (!result.isGranted) {
-        showLocationPermissionMissingToast();
-        sleep(new Duration(seconds: 2));
 
         if (!await Permission.locationWhenInUse.shouldShowRequestRationale) {
           openAppSettings();

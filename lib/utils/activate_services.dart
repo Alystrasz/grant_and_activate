@@ -1,6 +1,5 @@
 import 'package:bluetooth_enable/bluetooth_enable.dart';
 import 'package:grant_and_activate/utils/service.dart';
-import 'package:grant_and_activate/utils/toast_messages.dart';
 import 'package:location/location.dart';
 
 
@@ -22,10 +21,6 @@ Future<bool> activateServices(
       ? await BluetoothEnable.enableBluetooth == "true"
       : true;
 
-  if (!bluetoothResult) {
-    showBluetoothServiceNeedsActivationToast();
-  }
-
   Location location = new Location();
   var locationResult = true;
   var locationServiceResult = services.contains(Service.Location)
@@ -34,9 +29,6 @@ Future<bool> activateServices(
 
   if (!locationServiceResult) {
     locationResult = await location.requestService();
-    if (!locationResult) {
-      showLocationServiceNeedsActivationToast();
-    }
   }
 
   return bluetoothResult && locationResult;
