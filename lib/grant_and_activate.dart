@@ -29,5 +29,5 @@ Future<Result> checkPermissionsAndActivateServices(
     results.putIfAbsent(Service.Location, () => locationResult);
   }
 
-  return Result(allOk: !results.values.contains(false), results: results);
+  return Result(results, allOk: !results.values.contains(false));
 }
