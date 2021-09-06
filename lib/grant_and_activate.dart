@@ -1,6 +1,6 @@
 library grant_and_activate;
 
-import 'package:grant_and_activate/utils/Service.dart';
+import 'package:grant_and_activate/utils/service.dart';
 import 'package:grant_and_activate/utils/activate_services.dart';
 import 'package:grant_and_activate/utils/check_permissions.dart';
 

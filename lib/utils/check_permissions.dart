@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:grant_and_activate/utils/Service.dart';
+import 'package:grant_and_activate/utils/service.dart';
 import 'package:grant_and_activate/utils/toast_messages.dart';
 import 'package:permission_handler/permission_handler.dart';
 
