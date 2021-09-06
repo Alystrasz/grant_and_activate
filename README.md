@@ -11,12 +11,12 @@ This plugin is intended to be supported on Android and iOS, but has been tested 
 ## Usage
 
 ```dart
-Result result = checkPermissionsAndActivateServices([Service.Bluetooth, Service.Location]);
+Result result = checkPermissionsAndActivateServices([Feature.Bluetooth, Feature.Location]);
 if (result.allOk) {
   // Permissions have been granted and services are currently active
 } else {
   // Permissions have not been granted and/or services are not active
-  if (!result.getStatus(Service.Bluetooth))
+  if (!result.getStatus(Feature.Bluetooth))
     print("This application requires you to activate Bluetooth.");
 }
 ```

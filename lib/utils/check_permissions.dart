@@ -11,10 +11,10 @@ import 'package:permission_handler/permission_handler.dart';
 /// application settings screen.
 ///
 Future<bool> checkPermissions(
-  Feature service
+  Feature feature
 ) async {
 
-  switch (service) {
+  switch (feature) {
     case Feature.Bluetooth:
       var status = await Permission.bluetooth.status;
       if (!status.isGranted) {
@@ -41,7 +41,7 @@ Future<bool> checkPermissions(
       break;
 
     default:
-      throw new UnimplementedError("Cannot check permissions with this service.");
+      throw new UnimplementedError("Cannot check permissions with this feature.");
   }
 
   return true;

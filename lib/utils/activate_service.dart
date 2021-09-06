@@ -10,13 +10,13 @@ import 'package:location/location.dart';
 /// such service if it's not running; a warning toast message will appear,
 /// shall the user not activate it.
 ///
-/// Returns true service has been activated, false otherwise.
+/// Returns true if service has been activated, false otherwise.
 ///
 Future<bool> activateService(
-  Feature service
+  Feature feature
 ) async {
 
-  switch (service) {
+  switch (feature) {
 
     case Feature.Bluetooth:
       return await BluetoothEnable.enableBluetooth == "true";
@@ -30,6 +30,6 @@ Future<bool> activateService(
       return locationResult;
 
     default:
-      throw new UnimplementedError("Cannot activate this service.");
+      throw new UnimplementedError("Cannot activate the service associated to this feature.");
   }
 }
