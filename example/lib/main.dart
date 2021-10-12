@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       features.add(Feature.Bluetooth);
     }
     if (locationFeature) {
-      features.add(Feature.Location);
+      features.add(Feature.LocationWhenInUse);
     }
     Result result = await checkPermissionsAndActivateServices(features);
     setState(() {

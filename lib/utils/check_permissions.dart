@@ -27,7 +27,7 @@ Future<bool> checkPermissions(
       }
       break;
 
-    case Feature.Location:
+    case Feature.LocationWhenInUse:
       var locationStatus = await Permission.locationWhenInUse.status;
       if (!locationStatus.isGranted) {
         var result = await Permission.locationWhenInUse.request();

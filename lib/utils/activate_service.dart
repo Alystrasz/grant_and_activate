@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:bluetooth_enable/bluetooth_enable.dart';
 import 'package:grant_and_activate/utils/classes.dart';
 import 'package:location/location.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 
 ///
@@ -21,7 +24,11 @@ Future<bool> activateService(
     case Feature.Bluetooth:
       return await BluetoothEnable.enableBluetooth == "true";
 
-    case Feature.Location:
+    case Feature.LocationWhenInUse:
+      ServiceStatus serviceStatus = await Permission.locationWhenInUse.serviceStatus;
+      if (serviceStatus.isDisabled && Platform.isIOS) {
+        openAppSettings();
+      }
       Location location = new Location();
       var locationResult = true;
       var locationServiceResult = await location.serviceEnabled();

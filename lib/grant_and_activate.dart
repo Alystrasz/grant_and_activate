@@ -19,9 +19,9 @@ Future<Result> checkPermissionsAndActivateServices(
     bool bluetoothResult = await checkPermissions(Feature.Bluetooth) && await activateService(Feature.Bluetooth);
     results.putIfAbsent(Feature.Bluetooth, () => bluetoothResult);
   }
-  if (features.contains(Feature.Location)) {
-    bool locationResult = await checkPermissions(Feature.Location) && await activateService(Feature.Location);
-    results.putIfAbsent(Feature.Location, () => locationResult);
+  if (features.contains(Feature.LocationWhenInUse)) {
+    bool locationResult = await checkPermissions(Feature.LocationWhenInUse) && await activateService(Feature.LocationWhenInUse);
+    results.putIfAbsent(Feature.LocationWhenInUse, () => locationResult);
   }
 
   return Result(results, allOk: !results.values.contains(false));
