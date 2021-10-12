@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:grant_and_activate/grant_and_activate.dart';
+import 'package:grant_and_activate/utils/classes.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -31,15 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
   bool bluetoothFeature = false;
   bool locationFeature = false;
 
-  void _switchBluetoothFeatureState(bool? nValue) {
+  void _switchBluetoothFeatureState(bool nValue) {
     setState(() {
-      bluetoothFeature = nValue!;
+      bluetoothFeature = nValue;
     });
   }
 
-  void _switchLocationFeatureState(bool? nValue) {
+  void _switchLocationFeatureState(bool nValue) {
     setState(() {
-      locationFeature = nValue!;
+      locationFeature = nValue;
     });
   }
 
@@ -47,7 +49,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return bluetoothFeature || locationFeature;
   }
 
-  void _grantAndActivateFeatures() {
+  void _grantAndActivateFeatures() async {
+    List<Feature> features = [];
+    if (bluetoothFeature) {
+      features.add(Feature.Bluetooth);
+    }
+    if (locationFeature) {
+      features.add(Feature.Location);
+    }
+    Result result = await checkPermissionsAndActivateServices(features);
+    print(result.toString());
     return null;
   }
 
