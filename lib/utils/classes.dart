@@ -13,4 +13,8 @@ class Result {
   bool getStatus (Feature feature) {
     return this._results.containsKey(feature) && this._results[feature];
   }
+
+  String toString() {
+    return '{ allOk: $allOk, results: $_results }';
+  }
 }
