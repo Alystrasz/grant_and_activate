@@ -32,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool bluetoothFeature = false;
   bool locationFeature = false;
+  String resultText = 'Method call result will be displayed here.';
 
   void _switchBluetoothFeatureState(bool nValue) {
     setState(() {
@@ -58,7 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
       features.add(Feature.Location);
     }
     Result result = await checkPermissionsAndActivateServices(features);
-    print(result.toString());
+    setState(() {
+      resultText = result.toString();
+    });
     return null;
   }
 
@@ -94,6 +97,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Text("Grant and activate selected features"),
                   onPressed: _isAtLeastOneFeatureSelected() ? _grantAndActivateFeatures : null
               ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 80),
+              color: const Color.fromRGBO(10, 10, 10, 0.1),
+              padding: const EdgeInsets.all(20),
+              child: Text(resultText),
             )
           ],
         ),
