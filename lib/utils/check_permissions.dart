@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:grant_and_activate/utils/classes.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -31,7 +33,7 @@ Future<bool> checkPermissions(
         var result = await Permission.locationWhenInUse.request();
         if (!result.isGranted) {
 
-          if (!await Permission.locationWhenInUse.shouldShowRequestRationale) {
+          if (Platform.isAndroid && !await Permission.locationWhenInUse.shouldShowRequestRationale) {
             openAppSettings();
           }
 
