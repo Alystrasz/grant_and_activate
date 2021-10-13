@@ -55,5 +55,11 @@
     <string>Need Location permission</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>Need Location permission</string>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_dartobservatory._tcp</string>
+    </array>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>Needed for Flutter debugging tools</string>
 </dict>
 </plist>
