@@ -27,6 +27,24 @@ Future<bool> checkPermissions(
       }
       break;
 
+    case Feature.BluetoothConnect:
+      var status = await Permission.bluetoothConnect.request();
+      if (!status.isGranted) {
+        var result = await Permission.bluetoothConnect.request();
+        if (!result.isGranted)
+          return false;
+      }
+      break;
+
+    case Feature.BluetoothScan:
+      var status = await Permission.bluetoothScan.request();
+      if (!status.isGranted) {
+        var result = await Permission.bluetoothScan.request();
+        if (!result.isGranted)
+          return false;
+      }
+      break;
+
     case Feature.LocationWhenInUse:
       var locationStatus = await Permission.locationWhenInUse.status;
       if (!locationStatus.isGranted) {

@@ -21,6 +21,8 @@ Future<bool> activateService(
 
   switch (feature) {
 
+    case Feature.BluetoothConnect:
+    case Feature.BluetoothScan:
     case Feature.Bluetooth:
       return await BluetoothEnable.enableBluetooth == "true";
 

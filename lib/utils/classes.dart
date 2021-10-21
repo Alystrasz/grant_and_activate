@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 
 enum Feature {
   Bluetooth,
-  LocationWhenInUse
+  BluetoothConnect,
+  BluetoothScan,
+  LocationWhenInUse,
 }
 
 class Result {
