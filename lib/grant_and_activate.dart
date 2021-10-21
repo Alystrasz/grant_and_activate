@@ -15,13 +15,9 @@ Future<Result> checkPermissionsAndActivateServices(
   if (features.length == 0) throw ArgumentError('No input features provided.');
 
   Map<Feature, bool> results = Map();
-  if (features.contains(Feature.Bluetooth)) {
-    bool bluetoothResult = await checkPermissions(Feature.Bluetooth) && await activateService(Feature.Bluetooth);
-    results.putIfAbsent(Feature.Bluetooth, () => bluetoothResult);
-  }
-  if (features.contains(Feature.LocationWhenInUse)) {
-    bool locationResult = await checkPermissions(Feature.LocationWhenInUse) && await activateService(Feature.LocationWhenInUse);
-    results.putIfAbsent(Feature.LocationWhenInUse, () => locationResult);
+  for (var feature in features) {
+    bool result = await checkPermissions(feature) && await activateService(feature);
+    results.putIfAbsent(feature, () => result);
   }
 
   return Result(results, allOk: !results.values.contains(false));
