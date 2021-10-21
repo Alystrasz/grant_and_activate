@@ -31,12 +31,26 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool bluetoothFeature = false;
+  bool bluetoothScanFeature = false;
+  bool bluetoothConnectFeature = false;
   bool locationFeature = false;
   String resultText = 'Method call result will be displayed here.';
 
   void _switchBluetoothFeatureState(bool nValue) {
     setState(() {
       bluetoothFeature = nValue;
+    });
+  }
+
+  void _switchBluetoothScanFeatureState(bool nValue) {
+    setState(() {
+      bluetoothScanFeature = nValue;
+    });
+  }
+
+  void _switchBluetoothConnectFeatureState(bool nValue) {
+    setState(() {
+      bluetoothConnectFeature = nValue;
     });
   }
 
@@ -47,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   bool _isAtLeastOneFeatureSelected() {
-    return bluetoothFeature || locationFeature;
+    return bluetoothFeature || locationFeature || bluetoothScanFeature || bluetoothConnectFeature;
   }
 
   void _grantAndActivateFeatures() async {
@@ -58,6 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
     if (locationFeature) {
       features.add(Feature.LocationWhenInUse);
     }
+    if (bluetoothScanFeature) {
+      features.add(Feature.BluetoothScan);
+    }
+    if (bluetoothConnectFeature) {
+      features.add(Feature.BluetoothConnect);
+    }
+
     Result result = await checkPermissionsAndActivateServices(features);
     setState(() {
       resultText = result.toString();
@@ -85,6 +106,16 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('Bluetooth'),
               onTap: () => _switchBluetoothFeatureState(!bluetoothFeature),
               trailing: Checkbox(value: bluetoothFeature, onChanged: _switchBluetoothFeatureState),
+            ),
+            ListTile(
+              title: const Text('Bluetooth.Connect (Android 12)'),
+              onTap: () => _switchBluetoothConnectFeatureState(!bluetoothConnectFeature),
+              trailing: Checkbox(value: bluetoothConnectFeature, onChanged: _switchBluetoothConnectFeatureState),
+            ),
+            ListTile(
+              title: const Text('Bluetooth.Scan (Android 12)'),
+              onTap: () => _switchBluetoothScanFeatureState(!bluetoothScanFeature),
+              trailing: Checkbox(value: bluetoothScanFeature, onChanged: _switchBluetoothScanFeatureState),
             ),
             ListTile(
               title: const Text('Location'),
