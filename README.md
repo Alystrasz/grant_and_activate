@@ -24,4 +24,6 @@ if (result.allOk) {
 ## Supported features
 
 * Bluetooth
+* BluetoothConnect
+* BluetoothScan  
 * geolocation

@@ -10,3 +10,7 @@
 ## 0.0.3
 
 * Upgrading `permissions_handler` version to support Android 12.
+
+## 0.0.4
+
+* Adding BluetoothConnect and BluetoothConnect features.
