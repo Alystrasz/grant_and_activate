@@ -14,3 +14,8 @@
 ## 0.0.4
 
 * Adding BluetoothConnect and BluetoothConnect features.
+
+## 0.0.5 
+
+* Adding Location and LocationAlways features;
+* Formatting code.
