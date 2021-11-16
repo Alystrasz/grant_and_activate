@@ -3,19 +3,14 @@ import 'dart:io';
 import 'package:grant_and_activate/utils/classes.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 ///
 /// Checks permissions; if a permission is missing, asks user for it.
-///
 /// Returns false if permission has been denied, true otherwise.
 ///
 /// If the user refused location permission too many times, redirects to the
 /// application settings screen.
 ///
-Future<bool> checkPermissions(
-  Feature feature
-) async {
-
+Future<bool> checkPermissions(Feature feature) async {
   switch (feature) {
     case Feature.Bluetooth:
       var status = await Permission.bluetooth.status;
@@ -31,8 +26,7 @@ Future<bool> checkPermissions(
       var status = await Permission.bluetoothConnect.request();
       if (!status.isGranted) {
         var result = await Permission.bluetoothConnect.request();
-        if (!result.isGranted)
-          return false;
+        if (!result.isGranted) return false;
       }
       break;
 
@@ -40,8 +34,7 @@ Future<bool> checkPermissions(
       var status = await Permission.bluetoothScan.request();
       if (!status.isGranted) {
         var result = await Permission.bluetoothScan.request();
-        if (!result.isGranted)
-          return false;
+        if (!result.isGranted) return false;
       }
       break;
 
@@ -50,8 +43,8 @@ Future<bool> checkPermissions(
       if (!locationStatus.isGranted) {
         var result = await Permission.location.request();
         if (!result.isGranted) {
-
-          if (Platform.isAndroid && !await Permission.location.shouldShowRequestRationale) {
+          if (Platform.isAndroid &&
+              !await Permission.location.shouldShowRequestRationale) {
             openAppSettings();
           }
 
@@ -65,8 +58,8 @@ Future<bool> checkPermissions(
       if (!locationStatus.isGranted) {
         var result = await Permission.locationAlways.request();
         if (!result.isGranted) {
-
-          if (Platform.isAndroid && !await Permission.locationAlways.shouldShowRequestRationale) {
+          if (Platform.isAndroid &&
+              !await Permission.locationAlways.shouldShowRequestRationale) {
             openAppSettings();
           }
 
@@ -80,8 +73,8 @@ Future<bool> checkPermissions(
       if (!locationStatus.isGranted) {
         var result = await Permission.locationWhenInUse.request();
         if (!result.isGranted) {
-
-          if (Platform.isAndroid && !await Permission.locationWhenInUse.shouldShowRequestRationale) {
+          if (Platform.isAndroid &&
+              !await Permission.locationWhenInUse.shouldShowRequestRationale) {
             openAppSettings();
           }
 
@@ -91,7 +84,8 @@ Future<bool> checkPermissions(
       break;
 
     default:
-      throw new UnimplementedError("Cannot check permissions with this feature.");
+      throw new UnimplementedError(
+          "Cannot check permissions with this feature.");
   }
 
   return true;

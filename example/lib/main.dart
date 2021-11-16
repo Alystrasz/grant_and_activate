@@ -61,7 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   bool _isAtLeastOneFeatureSelected() {
-    return bluetoothFeature || locationFeature || bluetoothScanFeature || bluetoothConnectFeature;
+    return bluetoothFeature ||
+        locationFeature ||
+        bluetoothScanFeature ||
+        bluetoothConnectFeature;
   }
 
   void _grantAndActivateFeatures() async {
@@ -89,55 +92,65 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Grant and activate example app'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.only(bottom: 20),
-              child: const Text(
-                'Select features you want to activate:',
-              ),
-            ),
-            ListTile(
-              title: const Text('Bluetooth'),
-              onTap: () => _switchBluetoothFeatureState(!bluetoothFeature),
-              trailing: Checkbox(value: bluetoothFeature, onChanged: _switchBluetoothFeatureState),
-            ),
-            ListTile(
-              title: const Text('Bluetooth.Connect (Android 12)'),
-              onTap: () => _switchBluetoothConnectFeatureState(!bluetoothConnectFeature),
-              trailing: Checkbox(value: bluetoothConnectFeature, onChanged: _switchBluetoothConnectFeatureState),
-            ),
-            ListTile(
-              title: const Text('Bluetooth.Scan (Android 12)'),
-              onTap: () => _switchBluetoothScanFeatureState(!bluetoothScanFeature),
-              trailing: Checkbox(value: bluetoothScanFeature, onChanged: _switchBluetoothScanFeatureState),
-            ),
-            ListTile(
-              title: const Text('Location'),
-              onTap: () => _switchLocationFeatureState(!locationFeature),
-              trailing: Checkbox(value: locationFeature, onChanged: _switchLocationFeatureState),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 20),
-              child: ElevatedButton(
-                  child: const Text("Grant and activate selected features"),
-                  onPressed: _isAtLeastOneFeatureSelected() ? _grantAndActivateFeatures : null
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 80),
-              color: const Color.fromRGBO(10, 10, 10, 0.1),
-              padding: const EdgeInsets.all(20),
-              child: Text(resultText),
-            )
-          ],
+        appBar: AppBar(
+          title: const Text('Grant and activate example app'),
         ),
-      )
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.only(bottom: 20),
+                child: const Text(
+                  'Select features you want to activate:',
+                ),
+              ),
+              ListTile(
+                title: const Text('Bluetooth'),
+                onTap: () => _switchBluetoothFeatureState(!bluetoothFeature),
+                trailing: Checkbox(
+                    value: bluetoothFeature,
+                    onChanged: _switchBluetoothFeatureState),
+              ),
+              ListTile(
+                title: const Text('Bluetooth.Connect (Android 12)'),
+                onTap: () => _switchBluetoothConnectFeatureState(
+                    !bluetoothConnectFeature),
+                trailing: Checkbox(
+                    value: bluetoothConnectFeature,
+                    onChanged: _switchBluetoothConnectFeatureState),
+              ),
+              ListTile(
+                title: const Text('Bluetooth.Scan (Android 12)'),
+                onTap: () =>
+                    _switchBluetoothScanFeatureState(!bluetoothScanFeature),
+                trailing: Checkbox(
+                    value: bluetoothScanFeature,
+                    onChanged: _switchBluetoothScanFeatureState),
+              ),
+              ListTile(
+                title: const Text('Location'),
+                onTap: () => _switchLocationFeatureState(!locationFeature),
+                trailing: Checkbox(
+                    value: locationFeature,
+                    onChanged: _switchLocationFeatureState),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 20),
+                child: ElevatedButton(
+                    child: const Text("Grant and activate selected features"),
+                    onPressed: _isAtLeastOneFeatureSelected()
+                        ? _grantAndActivateFeatures
+                        : null),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 80),
+                color: const Color.fromRGBO(10, 10, 10, 0.1),
+                padding: const EdgeInsets.all(20),
+                child: Text(resultText),
+              )
+            ],
+          ),
+        ));
   }
 }

@@ -5,7 +5,6 @@ import 'package:grant_and_activate/utils/classes.dart';
 import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 ///
 /// Activates services.
 ///
@@ -15,12 +14,8 @@ import 'package:permission_handler/permission_handler.dart';
 ///
 /// Returns true if service has been activated, false otherwise.
 ///
-Future<bool> activateService(
-  Feature feature
-) async {
-
+Future<bool> activateService(Feature feature) async {
   switch (feature) {
-
     case Feature.BluetoothConnect:
     case Feature.BluetoothScan:
     case Feature.Bluetooth:
@@ -39,7 +34,8 @@ Future<bool> activateService(
       return locationResult;
 
     case Feature.LocationAlways:
-      ServiceStatus serviceStatus = await Permission.locationAlways.serviceStatus;
+      ServiceStatus serviceStatus =
+          await Permission.locationAlways.serviceStatus;
       if (serviceStatus.isDisabled && Platform.isIOS) {
         openAppSettings();
       }
@@ -51,7 +47,8 @@ Future<bool> activateService(
       return locationResult;
 
     case Feature.LocationWhenInUse:
-      ServiceStatus serviceStatus = await Permission.locationWhenInUse.serviceStatus;
+      ServiceStatus serviceStatus =
+          await Permission.locationWhenInUse.serviceStatus;
       if (serviceStatus.isDisabled && Platform.isIOS) {
         openAppSettings();
       }
@@ -63,6 +60,7 @@ Future<bool> activateService(
       return locationResult;
 
     default:
-      throw new UnimplementedError("Cannot activate the service associated to this feature.");
+      throw new UnimplementedError(
+          "Cannot activate the service associated to this feature.");
   }
 }
