@@ -26,4 +26,6 @@ if (result.allOk) {
 * Bluetooth
 * BluetoothConnect
 * BluetoothScan  
-* geolocation
+* Location
+* LocationAlways
+* LocationWhenInUse
