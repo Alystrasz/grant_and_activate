@@ -26,6 +26,18 @@ Future<bool> activateService(
     case Feature.Bluetooth:
       return await BluetoothEnable.enableBluetooth == "true";
 
+    case Feature.LocationAlways:
+      ServiceStatus serviceStatus = await Permission.locationAlways.serviceStatus;
+      if (serviceStatus.isDisabled && Platform.isIOS) {
+        openAppSettings();
+      }
+      Location location = new Location();
+      var locationResult = true;
+      var locationServiceResult = await location.serviceEnabled();
+      if (!locationServiceResult)
+        locationResult = await location.requestService();
+      return locationResult;
+
     case Feature.LocationWhenInUse:
       ServiceStatus serviceStatus = await Permission.locationWhenInUse.serviceStatus;
       if (serviceStatus.isDisabled && Platform.isIOS) {

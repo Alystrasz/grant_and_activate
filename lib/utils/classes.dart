@@ -4,6 +4,7 @@ enum Feature {
   Bluetooth,
   BluetoothConnect,
   BluetoothScan,
+  LocationAlways,
   LocationWhenInUse,
 }
 

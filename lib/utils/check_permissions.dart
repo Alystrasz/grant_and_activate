@@ -45,6 +45,21 @@ Future<bool> checkPermissions(
       }
       break;
 
+    case Feature.LocationAlways:
+      var locationStatus = await Permission.locationAlways.status;
+      if (!locationStatus.isGranted) {
+        var result = await Permission.locationAlways.request();
+        if (!result.isGranted) {
+
+          if (Platform.isAndroid && !await Permission.locationAlways.shouldShowRequestRationale) {
+            openAppSettings();
+          }
+
+          return false;
+        }
+      }
+      break;
+
     case Feature.LocationWhenInUse:
       var locationStatus = await Permission.locationWhenInUse.status;
       if (!locationStatus.isGranted) {
