@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:bluetooth_enable/bluetooth_enable.dart';
+import 'package:bluetooth_enable_fork/bluetooth_enable_fork.dart';
 import 'package:grant_and_activate/utils/classes.dart';
 import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart';

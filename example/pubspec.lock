@@ -8,13 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.1"
-  bluetooth_enable:
+  bluetooth_enable_fork:
     dependency: transitive
     description:
-      name: bluetooth_enable
+      name: bluetooth_enable_fork
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -92,7 +92,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.4"
+    version: "0.0.5"
   http_parser:
     dependency: transitive
     description:
