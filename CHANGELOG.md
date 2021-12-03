@@ -23,3 +23,4 @@
 ## 0.0.6
 
 * Null-safety support.
+* Introducing iOS support for Bluetooth feature.
