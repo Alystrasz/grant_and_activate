@@ -8,11 +8,11 @@ environment:
   flutter: ">=2.0.3"
 
 dependencies:
-  bluetooth_enable_fork: ^0.1.4
+  bluetooth_enable_fork: ^0.1.5
   flutter:
     sdk: flutter
-  location: ^4.3.0
-  permission_handler: ^8.3.0
+  location: ^4.4.0
+  permission_handler: ^10.1.0
 
 dev_dependencies:
   flutter_test:
