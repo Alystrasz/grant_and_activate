@@ -8,7 +8,7 @@ environment:
   flutter: ">=2.0.3"
 
 dependencies:
-  bluetooth_enable_fork: ^0.1.5
+  bluetooth_enable_fork: ^0.1.6
   flutter:
     sdk: flutter
   location: ^4.4.0
