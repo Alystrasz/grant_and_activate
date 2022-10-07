@@ -1,6 +1,6 @@
 name: grant_and_activate
 description: Activate services and ask for associated permissions with a single method call.
-version: 0.0.7
+version: 0.0.8
 homepage: https://github.com/Alystrasz/grant_and_activate
 
 environment:

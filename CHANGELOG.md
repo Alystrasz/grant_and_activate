@@ -28,3 +28,7 @@
 ## 0.0.7
 
 * Update dependencies.
+
+### 0.0.8
+
+* Update bluetooth_enable dependency, allowing to activate Bluetooth on Android >= 13.
